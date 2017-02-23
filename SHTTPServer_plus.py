@@ -8,6 +8,7 @@
   enhance the standard library http/server.py to
 support upload file
 
+test in python3.5
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 '''
 
@@ -122,4 +123,13 @@ class SRequestHandler(SimpleHTTPRequestHandler):
         return f
 
 if __name__ == '__main__':
-    test(HandlerClass=SRequestHandler, port=8000, bind='127.0.0.1')
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--bind', 'b', default='', metavar='ADDRESS',
+                        help='Specify alternte bind address '
+                             '[default: all interfaces]')
+    parser.add_argument('port', action='store', 
+                        default=8000, type=int,
+                        nargs='?',
+                        help='Specify altername port [default: 8000]')
+    args = parser.parse_args()
+    test(HandlerClass=SRequestHandler, port=args.port, bind=args.bind)
