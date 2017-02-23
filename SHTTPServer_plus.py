@@ -13,6 +13,7 @@ test in python3.5
 '''
 
 import os, sys, urllib, urllib.parse, http, html, io
+import argparse
 
 try:
     from http.server import SimpleHTTPRequestHandler, test
